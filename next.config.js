@@ -9,6 +9,7 @@ const nextConfig = {
     path: '',
   },
   pageExtensions: ['js', 'jsx', 'mdx'],
+  basePath: isProd ? '/blog/' : '',
   assetPrefix: isProd ? '/blog/' : ''
 }
 
