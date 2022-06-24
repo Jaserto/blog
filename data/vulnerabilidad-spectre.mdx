@@ -1,0 +1,48 @@
+---
+title: 'Vulnerabilidad Spectre'
+date: '🗓️Septiembre 10, 2020'
+tags: '🔒 Seguridad,💻Informatica'
+fecha: '2021-09-10'
+descripcion: 'Los informáticos descubren una nueva vulnerabilidad que afecta a los ordenadores de todo el mundo'
+---
+
+
+
+En 2018, investigadores de la industria y del mundo académico revelaron un fallo de hardware potencialmente devastador que hacía que los ordenadores y otros dispositivos de todo el mundo fueran vulnerables a los ataques.
+
+Los investigadores llamaron a la vulnerabilidad Spectre porque el fallo estaba integrado en los procesadores de los ordenadores modernos que obtienen su velocidad de una técnica llamada "ejecución especulativa", en la que el procesador predice las instrucciones que podría acabar ejecutando y se prepara siguiendo la ruta prevista para extraer las instrucciones de la memoria. Un ataque Spectre engaña al procesador para que ejecute las instrucciones por el camino equivocado. Aunque el procesador se recupera y completa correctamente su tarea, los piratas informáticos pueden acceder a datos confidenciales mientras el procesador va por el camino equivocado.
+
+Desde que se descubrió Spectre, los informáticos con más talento de la industria y el mundo académico han trabajado en parches de software y defensas de hardware, confiando en poder proteger los puntos más vulnerables del proceso de ejecución especulativa sin ralentizar demasiado la velocidad de cálculo.
+
+Tendrán que volver a la mesa de dibujo.
+
+![Vulnerabilidad Spectre](/images/vulnerabilidad-spectre.jpg)
+
+
+Un equipo de investigadores de la Facultad de Ingeniería de la Universidad de Virginia ha descubierto una línea de ataque que rompe todas las defensas de Spectre, lo que significa que miles de millones de ordenadores y otros dispositivos de todo el mundo son tan vulnerables hoy como lo eran cuando se anunció Spectre. El equipo comunicó su descubrimiento a los fabricantes internacionales de chips en abril y presentará el nuevo reto en una conferencia mundial sobre arquitectura informática en junio.
+
+Los investigadores, dirigidos por Ashish Venkat, profesor adjunto de Ciencias de la Computación William Wulf en la Facultad de Ingeniería de la UVA, descubrieron una forma totalmente nueva de que los piratas informáticos exploten lo que se denomina "caché de microoperaciones", que acelera la computación almacenando comandos sencillos y permitiendo que el procesador los recupere rápidamente y en una fase temprana del proceso de ejecución especulativa. Las microcachés se han incorporado a los ordenadores de Intel fabricados desde 2011.
+
+El equipo de Venkat descubrió que los hackers pueden robar datos cuando un procesador obtiene comandos de la caché de micro-op.
+
+"Piensa en un hipotético escenario de seguridad en un aeropuerto en el que la TSA te deja entrar sin comprobar tu tarjeta de embarque porque (1) es rápido y eficiente, y (2) te comprobarán tu tarjeta de embarque en la puerta de embarque de todos modos", dijo Venkat. "Un procesador informático hace algo parecido. Predice que la comprobación será superada y puede dejar pasar instrucciones a la tubería. En última instancia, si la predicción es incorrecta, echará esas instrucciones de la tubería, pero esto podría ser demasiado tarde porque esas instrucciones podrían dejar efectos secundarios mientras esperan en la tubería que un atacante podría explotar más tarde para inferir secretos como una contraseña."
+
+Dado que todas las defensas actuales de Spectre protegen el procesador en una fase posterior de la ejecución especulativa, son inútiles frente a los nuevos ataques del equipo de Venkat. Dos variantes de los ataques que el equipo descubrió pueden robar información de acceso especulativo de los procesadores de Intel y AMD.
+
+"La defensa sugerida por Intel contra Spectre, que se llama LFENCE, coloca el código sensible en una zona de espera hasta que se ejecutan las comprobaciones de seguridad, y sólo entonces se permite la ejecución del código sensible", dijo Venkat. "Pero resulta que las paredes de esta zona de espera tienen orejas, que nuestro ataque aprovecha. Demostramos cómo un atacante puede introducir secretos a través de la caché de las microoperaciones utilizándola como canal encubierto".
+
+El equipo de Venkat incluye a tres de sus estudiantes de posgrado de informática, la estudiante de doctorado Xida Ren, el estudiante de doctorado Logan Moody y el estudiante de maestría Matthew Jordan. El equipo de la UVA colaboró con Dean Tullsen, profesor del Departamento de Ciencias e Ingeniería Informática de la Universidad de California en San Diego, y su estudiante de doctorado Mohammadkazem Taram, para aplicar ingeniería inversa a ciertas características no documentadas de los procesadores de Intel y AMD.
+
+Esta vulnerabilidad recién descubierta será mucho más difícil de solucionar.
+
+"En el caso de los anteriores ataques de Spectre, los desarrolladores han ideado una forma relativamente fácil de evitar cualquier tipo de ataque sin una gran penalización de rendimiento" para la computación, dijo Moody. "La diferencia con este ataque es que se asume una penalización de rendimiento mucho mayor que esos ataques anteriores".
+
+"Los parches que desactivan la caché de las microoperaciones o detienen la ejecución especulativa en el hardware heredado harían retroceder de forma efectiva las innovaciones críticas de rendimiento en la mayoría de los procesadores modernos de Intel y AMD, y esto simplemente no es factible", dijo Ren, el principal estudiante autor. "Realmente no está claro cómo resolver este problema de forma que ofrezca un alto rendimiento al hardware heredado, pero tenemos que hacer que funcione", dijo Venkat. "Asegurar la caché de las microoperaciones es una línea de investigación interesante y que estamos considerando".
+
+El equipo de Venkat ha revelado la vulnerabilidad a los equipos de seguridad de productos de Intel y AMD. Ren y Moody dieron una charla técnica en los laboratorios de Intel de todo el mundo el 27 de abril para discutir el impacto y las posibles soluciones. Venkat espera que los informáticos del mundo académico y de la industria colaboren rápidamente, como hicieron con Spectre, para encontrar soluciones.
+
+El trabajo del equipo ha sido aceptado por el altamente competitivo Simposio Internacional de Arquitectura de Ordenadores, o ISCA. La conferencia anual del ISCA es el principal foro de nuevas ideas y resultados de investigación en arquitectura de ordenadores y se celebrará virtualmente en junio.
+
+Venkat también está trabajando en estrecha colaboración con el equipo de arquitectura de procesadores de los laboratorios Intel en otras innovaciones de microarquitectura, a través del Programa de Investigación de Microarquitectura Fundacional de la National Science Foundation/Intel.
+
+Venkat estaba bien preparado para dirigir el equipo de investigación de la UVA en este descubrimiento. Ha forjado una asociación de larga duración con Intel que comenzó en 2012, cuando hizo prácticas en la empresa mientras era estudiante de posgrado de informática en la Universidad de California, San Diego.
