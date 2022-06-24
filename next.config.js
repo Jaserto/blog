@@ -9,8 +9,8 @@ const nextConfig = {
     path: '',
   },
   pageExtensions: ['js', 'jsx', 'mdx'],
-  basePath: isProd ? '/blog/' : '',
-  assetPrefix: isProd ? '/blog/' : ''
+  //basePath: isProd ? '/blog/' : '',
+  //assetPrefix: isProd ? '/blog/' : ''
 }
 
 module.exports = nextConfig
