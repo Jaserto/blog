@@ -8,6 +8,7 @@ const nextConfig = {
     loader: 'akamai',
     path: '',
   },
+  pageExtensions: ['js', 'jsx', 'mdx'],
   assetPrefix: isProd ? '/blog/' : ''
 }
 
