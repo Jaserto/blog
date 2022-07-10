@@ -121,7 +121,7 @@ const StyledDiv = styled.div`
       margin: 0;
     }
   }
-  @media screen and (min-width: 300px) {
+  @media screen and (max-width: 400px) {
     .posts {
       margin-top: 10px;
       height: 100%;
