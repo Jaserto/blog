@@ -77,6 +77,14 @@ overflow:hidden;
     margin:40px 0 0 0;
     color: #f3f3f3;
   }
+  ul{
+    color: #f3f3f3;
+  }
+  h3{
+    font-size: 24px;
+    margin:25px 0 0 0;
+    color: #f3f3f3;
+  }
   p{
     color: #eaeaea;
     font-size:15px;

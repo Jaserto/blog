@@ -1,7 +1,7 @@
 ---
 title: '🐋 Diferencia entre Expose y Ports en Docker Compose'
 date: '🗓️Julio 10, 2022'
-tags: 'DevOps,💻Informatica'
+tags: '💻Informatica'
 fecha: '2022-07-10'
 descripcion: 'Encuentra las diferencias en Docker entre Expose y Ports.'
 ---
@@ -11,18 +11,19 @@ descripcion: 'Encuentra las diferencias en Docker entre Expose y Ports.'
 
 
 ## Resumen
-Como sabemos, Docker Compose es una herramienta para definir y administrar multiples contenedores de una vez. Docker Compose establece una red dedicada para los contenedores que hemos definido, habilitando la comunicacion entre ellos. Como resultado, nosotros podemos crear y correr servicios con una configuracion en el archivo docker-compose.yml usando simplemente un único comando.
+Como sabemos, Docker Compose es una herramienta para definir y administrar múltiples contenedores de una vez. Docker Compose establece una red dedicada para los contenedores que hemos definido, habilitando la comunicacion entre ellos.
+Como resultado, nosotros podemos crear y correr servicios con una configuracion en el archivo docker-compose.yml usando simplemente un único comando.
 
-En este artículo veremos dos propiedades de YAML que nos permitirán customizar nuestra red de los contenedores, con *expose* y *ports*.
+En este artículo veremos dos propiedades de YAML que nos permitirán customizar nuestra red de los contenedores, con *EXPOSE* y *PORTS*.
 
 
 ## Expose
 
 Primeramente, echemos un ojo a la configuracion de *expose*. Esta propiedad define los puertos que Docker Compose expone desde el contenedor.
 
-Estos puertos serán accesibles desde otros servicios conectadis a la misma red (*network*), pero no serñan publicados en el ordenador o la máquina que proporciona el host.
+Estos puertos serán accesibles desde otros servicios conectados a la misma red (*network*), pero no serán publicados en el ordenador o la máquina que proporciona el host.
 
-Podemos exponer el puerto especificando su numero en la seccion de *services*.
+Podemos exponer el puerto especificando su número en la sección de *services*.
 ```shell
 services:
   myapp1:
@@ -36,7 +37,7 @@ services:
       - "5000"
 ```
 
-Como podemos ver, podemos especificar multiples valores para cada servicio. En este caso, hemos expuesto los puertos 3000 y 8000 para el contendor *myapp1.*  y para el contendor *myapp2* el puerto 5000. Los servicios ahora son accesibles desde estos puertos por otros contenedores en la misma red (*network*).
+Como podemos ver, podemos especificar múltiples valores para cada servicio. En este caso, hemos expuesto los puertos 3000 y 8000 para el contendor *myapp1*  y para el contendor *myapp2* el puerto 5000. Los servicios ahora son accesibles desde estos puertos por otros contenedores en la misma red (*network*).
 Echemos un ojo a los puertos expuestos.
 
 ```js
@@ -46,8 +47,8 @@ CONTAINER ID   IMAGE    COMMAND     CREATED     STATUS      PORTS               
 bc044e180131   ...      ...         ...         ...         5000/tcp            bael_myapp2
 ```
 
-En la salida del comando *docker**.ps*, podemos encontrar los puertos que estan expuestos en la columna PORTS.
-Finalmente, verifiquemos la comunicacion entre los contenedores con el siguiente comando.
+En la salida del comando *docker*.ps*, podemos encontrar los puertos que estan expuestos en la columna PORTS.
+Finalmente, verifiquemos la comunicación entre los contenedores con el siguiente comando.
 
 ```js
 > docker exec -it bc044e180131 /bin/bash
@@ -58,8 +59,7 @@ bash-5.1$ nc -vz myapp1 8000
 myapp1 (172.18.0.1:8000) open
 ```
 
-
-Acabamos de conectarnos a la CLI de *myapp2*. Usando el comando *netcat*, comprobamos que los dos puertos expuestos desde myapp1 estan comunicados.
+Acabamos de conectarnos a la CLI de *myapp2* usando el comando *netcat*, comprobamos que los dos puertos expuestos desde myapp1 estan comunicados.
 
 ## PORTS
 
@@ -76,10 +76,9 @@ Definamos los puertos en el archivo Docker Compose.
 ```js
 [HOST:]CONTENDOR[/PROTOCOL]
 ```
-
-- Aquí el HOST es un número de puerto de host o un rango de números de puerto que puede ir precedido de una dirección IP. Si no especificamos la dirección IP, Docker Compose vincula el puerto a todas las interfaces de red
-- El CONTENEDOR define un número de puerto del contenedor o un rango de números de puerto.
-- El PROTOCOL restringe los puertos de los contenedores al protocolo especificado o los establece como TCP si están vacíos. Sólo la parte de CONTAINER es obligatoria.
+Aquí el HOST es un número de puerto de host o un rango de números de puerto que puede ir precedido de una dirección IP. Si no especificamos la dirección IP, Docker Compose vincula el puerto a todas las interfaces de red
+El CONTENEDOR define un número de puerto del contenedor o un rango de números de puerto.
+El PROTOCOL restringe los puertos de los contenedores al protocolo especificado o los establece como TCP si están vacíos. Sólo la parte de CONTAINER es obligatoria.
 
 Ahora que conocemos la sintaxis, vamos a definir los puertos en nuestro archivo Docker Compose:
 

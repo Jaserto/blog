@@ -12,10 +12,9 @@ export const HeaderWrapper = styled.header`
   font-family: 'Inter', sans-serif;
   font-size: 18px;
   align-items: center;
-  height: 130px;
+  height: 110px;
   max-width:800px;
   color: white;
-  padding: 0 30px;
   .menu{
     display: flex;
     flex-direction:row;
@@ -46,7 +45,6 @@ export const HeaderWrapper = styled.header`
     flex-direction: column;
     width: 100%;
     margin:0;
-    padding: 0 30px;
   }
 
  /*  @media (max-width: 290px) {
