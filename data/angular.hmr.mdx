@@ -1,9 +1,9 @@
 ---
 title: 'Implementando HMR en un proyecto de Angular'
 date: '🗓️Julio 15, 2022'
-tags: '🔒 Seguridad,💻Informatica'
-fecha: '2021-09-07'
-descripcion: 'Con los ataques informáticos, asegura tu web de ataques maliciosos con las mejores prácticas'
+tags: '🔒 Desarrollo,💻Informatica'
+fecha: '2021-15-07'
+descripcion: 'Aprende a usar el HMR con Angular'
 ---
 
 # Angular HMR
@@ -23,25 +23,30 @@ Vamos a implementarlo en un nuevo proyecto de Angular.
 
 Lo primero es añadir en nuestra carpeta de environments el siguiente archivo. *`src/environments/environment.hmr.ts`*
 
-sh``export const environment = {
+```js
+export const environment = {
 
 production: true,
 
 hmr: false
-};``
+};
+```
 
 Después de añadir el anterior código, necesitamos actualizar el entorno por defecto en *`src/environments/environment.ts`*.
 
-``export const environment = {
+```js
+export const environment = {
 
 production: false,
 
 hmr: false
 
-};``
+};
+```
 
 Después de añadir los entornos, debemos de actualizar el archivo *angular.json*. Donde pone < project-name > debemos incluir el nombre de nuestro proyecto.
-``
+
+```js
 "build": {
 
 "configurations": {
@@ -86,11 +91,13 @@ Después de añadir los entornos, debemos de actualizar el archivo *angular.json
 
 }
 
-}``
+}
+
+```
 
 Añadimos también los tupos al archivo *`src/tsconfig.app.json`* como **node**.
 
-``
+```js
 {
 
 ...
@@ -104,13 +111,17 @@ Añadimos también los tupos al archivo *`src/tsconfig.app.json`* como **node**.
 },
 
 }
-``
+```
 
 Después de añadir la configuracion debemos usar el siguiente comando para usar HMR.
 
-**ng serve --configuration hmr**
+```shell
+ng serve --configuration hmr
+```
+
 SI queremos añadir un shortcut, podemos hacerlo en el *package.json* con el siguiente código.
-``
+
+```js
 "scripts": {
 
 ...
@@ -118,17 +129,18 @@ SI queremos añadir un shortcut, podemos hacerlo en el *package.json* con el sig
 "hmr": "ng serve --configuration hmr"
 
 }
-``
+
+```
 
 Despúes de hacer todo lo anterior debemos instalar la siguiente dependecia.
 
-``
+```js
 npm install --save-dev @angularclass/hmr
-``
+```
 
 Crea un archivo en *src/hmr.ts* con el siguiente contenido.
 
-``
+```js
 import { NgModuleRef, ApplicationRef } from '@angular/core';
 
 import { createNewHosts } from '@angularclass/hmr';
@@ -156,11 +168,11 @@ makeVisible();
 });
 
 };
-``
+```
 
 Después de añadir el anterior codigo, necesitamos actualizar el archivo *src/main.ts* con el siguiente contenido.
 
-``
+```js
 import { enableProdMode } from '@angular/core';
 
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -198,11 +210,13 @@ console.log('Are you using the --hmr flag for ng serve?');
 bootstrap().catch(err => console.log(err));
 
 }
-``
+```
 
 Finalemente, hemos terminado de implementar el HMR en nuestro proyecto de Angular.
 
-``npm run hmr ``
+```shell
+npm run hmr 
+```
 
 Vamos a comparar nuestro proyecto con y sin HMR.
 
