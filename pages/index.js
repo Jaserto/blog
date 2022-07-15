@@ -92,6 +92,7 @@ const StyledDiv = styled.div`
     }
     .tags {
       display: flex;
+      flex-wrap: wrap
       flex-direction: row;
       margin-bottom: 10px;
     }

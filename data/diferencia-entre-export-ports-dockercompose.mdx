@@ -63,9 +63,9 @@ Acabamos de conectarnos a la CLI de *myapp2* usando el comando *netcat*, comprob
 
 ## PORTS
 
-Ahora, echemos un ojo a PORTS. Como el comnado de antes, esta propiedad define los puertos que queremos que esten expuestos desde el contenedor. A diferencia de la configuracion de EXPOSE, la configuracion de PORTS permite que estos puertos que especifiquemos sean accesibles internamente y publicados en la *maquina host* o el ordenador.
+Ahora, echemos un ojo a PORTS. Como la propiedad de antes, esta propiedad define los puertos que queremos que esten expuestos desde el contenedor. A diferencia de la configuracion de EXPOSE, la configuracion de PORTS permite que estos puertos que especifiquemos sean accesibles internamente y publicados en la *maquina host* o el ordenador.
 
-Como antes, nosotros podemos definir los puertos de cada servicio, pero la configuracion es un poco mas compleja. Primero, nosotros tenemos que elegir dos sintaxis, la corta o la larga, para definir la configuracion.
+Como antes, podemos definir los puertos de cada servicio, pero la configuracion es un poco mas compleja. Primero, tenemos que elegir dos sintaxis, la corta o la larga, para definir la configuracion.
 
 ### Sintaxis Corta
 
@@ -76,9 +76,9 @@ Definamos los puertos en el archivo Docker Compose.
 ```js
 [HOST:]CONTENDOR[/PROTOCOL]
 ```
-Aquí el HOST es un número de puerto de host o un rango de números de puerto que puede ir precedido de una dirección IP. Si no especificamos la dirección IP, Docker Compose vincula el puerto a todas las interfaces de red
-El CONTENEDOR define un número de puerto del contenedor o un rango de números de puerto.
-El PROTOCOL restringe los puertos de los contenedores al protocolo especificado o los establece como TCP si están vacíos. Sólo la parte de CONTAINER es obligatoria.
+- Aquí el HOST es un número de puerto de host o un rango de números de puerto que puede ir precedido de una dirección IP. Si no especificamos la dirección IP, Docker Compose vincula el puerto a todas las interfaces de red
+- El CONTENEDOR define un número de puerto del contenedor o un rango de números de puerto.
+- El PROTOCOL restringe los puertos de los contenedores al protocolo especificado o los establece como TCP si están vacíos. Sólo la parte de CONTAINER es obligatoria.
 
 Ahora que conocemos la sintaxis, vamos a definir los puertos en nuestro archivo Docker Compose:
 
@@ -128,11 +128,9 @@ services:
 ```
 Aquí, el target es obligatorio y especifica el puerto del contenedor (o rango de puertos) que será expuesto, lo que equivale al CONTAINER en la sintaxis corta.
 
-El host_ip y published son partes de HOST en la corta, donde podemos definir la dirección IP y el puerto del host.
-
-El protocolo, igual que PROTOCOL en la sintaxis corta, restringe el puerto del contenedor al protocolo especificado (o TCP si está vacío).
-
-El modo es el enum con dos valores que especifica las reglas de publicación del puerto. Debemos usar el valor host para publicar un puerto localmente. El segundo valor - ingress - está reservado para entornos de contenedores más complejos y significa que el puerto será equilibrado en carga.
+- El host_ip y published son partes de HOST en la corta, donde podemos definir la dirección IP y el puerto del host.
+- El protocolo, igual que PROTOCOL en la sintaxis corta, restringe el puerto del contenedor al protocolo especificado (o TCP si está vacío).
+- El modo es el enum con dos valores que especifica las reglas de publicación del puerto. Debemos usar el valor host para publicar un puerto localmente. El segundo valor - ingress - está reservado para entornos de contenedores más complejos y significa que el puerto será equilibrado en carga.
 
 En conclusión, cualquier cadena de sintaxis corta puede ser fácilmente representada por una estructura larga. Sin embargo, no todas las configuraciones de sintaxis larga pueden ser trasladadas a la corta debido a la falta de una propiedad de modo.
 

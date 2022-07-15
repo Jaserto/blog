@@ -1,0 +1,208 @@
+---
+title: 'Implementando HMR en un proyecto de Angular'
+date: '🗓️Julio 15, 2022'
+tags: '🔒 Seguridad,💻Informatica'
+fecha: '2021-09-07'
+descripcion: 'Con los ataques informáticos, asegura tu web de ataques maliciosos con las mejores prácticas'
+---
+
+# Angular HMR
+
+Hola de nuevo.
+En este artículo, me gustaria mostrar cómo implementar HMR-Hot Module en tu aplicacion de Angular.
+
+Una de las cosas que más puede molestarle a algunos cuando están desarrollando su aplicación de Angular es el reloading de la página cada vez que guardan los cambios, aunque sean mínimos. Este reloading vuelve a cargar la pagina entera, pudiendo a veces, generar un problema en el rendimiento dependiendo de la máquina en la que estemos desarrollando.
+
+Para evitar que el navegador recarge la pagina cada vez que guardamos cambios (Ctrl +S), debemos de hacer uso de la herramienta HMR.
+
+## Qué es HMR
+
+Hot Module Replacement(HMR) es una característica de Webpack. HMR actualiza tu aplicacion de angular sin que recompile y recargue toda tu proyecto.
+También puedes visitar tu web para más información.
+Vamos a implementarlo en un nuevo proyecto de Angular.
+
+Lo primero es añadir en nuestra carpeta de environments el siguiente archivo. *`src/environments/environment.hmr.ts`*
+
+sh``export const environment = {
+
+production: true,
+
+hmr: false
+};``
+
+Después de añadir el anterior código, necesitamos actualizar el entorno por defecto en *`src/environments/environment.ts`*.
+
+``export const environment = {
+
+production: false,
+
+hmr: false
+
+};``
+
+Después de añadir los entornos, debemos de actualizar el archivo *angular.json*. Donde pone < project-name > debemos incluir el nombre de nuestro proyecto.
+``
+"build": {
+
+"configurations": {
+
+...
+
+"hmr": {
+
+"fileReplacements": [
+
+{
+
+"replace": "src/environments/environment.ts",
+
+"with": "src/environments/environment.hmr.ts"
+
+}
+
+]
+
+}
+
+}
+
+},
+
+...
+
+"serve": {
+
+"configurations": {
+
+...
+
+"hmr": {
+
+"hmr": true,
+
+"browserTarget": "<project-name>:build:hmr"
+
+}
+
+}
+
+}``
+
+Añadimos también los tupos al archivo *`src/tsconfig.app.json`* como **node**.
+
+``
+{
+
+...
+
+"compilerOptions": {
+
+...
+
+"types": ["node"]
+
+},
+
+}
+``
+
+Después de añadir la configuracion debemos usar el siguiente comando para usar HMR.
+
+**ng serve --configuration hmr**
+SI queremos añadir un shortcut, podemos hacerlo en el *package.json* con el siguiente código.
+``
+"scripts": {
+
+...
+
+"hmr": "ng serve --configuration hmr"
+
+}
+``
+
+Despúes de hacer todo lo anterior debemos instalar la siguiente dependecia.
+
+``
+npm install --save-dev @angularclass/hmr
+``
+
+Crea un archivo en *src/hmr.ts* con el siguiente contenido.
+
+``
+import { NgModuleRef, ApplicationRef } from '@angular/core';
+
+import { createNewHosts } from '@angularclass/hmr';
+
+export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<any>>) => {
+
+let ngModule: NgModuleRef<any>;
+
+module.hot.accept();
+
+bootstrap().then(mod => ngModule = mod);
+
+module.hot.dispose(() => {
+
+const appRef: ApplicationRef = ngModule.injector.get(ApplicationRef);
+
+const elements = appRef.components.map(c => c.location.nativeElement);
+
+const makeVisible = createNewHosts(elements);
+
+ngModule.destroy();
+
+makeVisible();
+
+});
+
+};
+``
+
+Después de añadir el anterior codigo, necesitamos actualizar el archivo *src/main.ts* con el siguiente contenido.
+
+``
+import { enableProdMode } from '@angular/core';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { AppModule } from './app/app.module';
+
+import { environment } from './environments/environment';
+
+import { hmrBootstrap } from './hmr';
+
+if (environment.production) {
+
+enableProdMode();
+
+}
+
+const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
+
+if (environment.hmr) {
+
+if (module[ 'hot' ]) {
+
+hmrBootstrap(module, bootstrap);
+
+} else {
+
+console.error('HMR is not enabled for webpack-dev-server!');
+
+console.log('Are you using the --hmr flag for ng serve?');
+
+}
+
+} else {
+
+bootstrap().catch(err => console.log(err));
+
+}
+``
+
+Finalemente, hemos terminado de implementar el HMR en nuestro proyecto de Angular.
+
+``npm run hmr ``
+
+Vamos a comparar nuestro proyecto con y sin HMR.
+
