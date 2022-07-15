@@ -2,22 +2,22 @@
 title: 'Implementando HMR en un proyecto de Angular'
 date: '🗓️Julio 15, 2022'
 tags: '🔒 Desarrollo,💻Informatica'
-fecha: '2021-15-07'
+fecha: '2022-15-07'
 descripcion: 'Aprende a usar el HMR con Angular'
 ---
 
 # Angular HMR
 
-Hola de nuevo.
-En este artículo, me gustaria mostrar cómo implementar HMR-Hot Module en tu aplicacion de Angular.
 
-Una de las cosas que más puede molestarle a algunos cuando están desarrollando su aplicación de Angular es el reloading de la página cada vez que guardan los cambios, aunque sean mínimos. Este reloading vuelve a cargar la pagina entera, pudiendo a veces, generar un problema en el rendimiento dependiendo de la máquina en la que estemos desarrollando.
+En este artículo, me gustaría mostrar cómo implementar HMR-Hot Module en tu aplicacioón de Angular.
 
-Para evitar que el navegador recarge la pagina cada vez que guardamos cambios (Ctrl +S), debemos de hacer uso de la herramienta HMR.
+Una de las cosas que más puede molestarle a algunos cuando están desarrollando su aplicación de Angular es el reloading de la página cada vez que se guardan los cambios, aunque sean mínimos. Este reloading vuelve a cargar la pagina entera, pudiendo a veces, generar un problema en el rendimiento dependiendo de la máquina en la que estemos desarrollando.
+
+Para evitar que el navegador recarge la página cada vez que guardemos cambios (Ctrl +S), debemos de hacer uso de la herramienta HMR.
 
 ## Qué es HMR
 
-Hot Module Replacement(HMR) es una característica de Webpack. HMR actualiza tu aplicacion de angular sin que recompile y recargue toda tu proyecto.
+Hot Module Replacement(HMR) es una característica de Webpack. HMR actualiza tu aplicación de Angular sin que recompile y recargue todo tu proyecto.
 También puedes visitar tu web para más información.
 Vamos a implementarlo en un nuevo proyecto de Angular.
 
@@ -26,9 +26,9 @@ Lo primero es añadir en nuestra carpeta de environments el siguiente archivo. *
 ```js
 export const environment = {
 
-production: true,
+    production: true,
 
-hmr: false
+    hmr: false
 };
 ```
 
@@ -37,9 +37,9 @@ Después de añadir el anterior código, necesitamos actualizar el entorno por d
 ```js
 export const environment = {
 
-production: false,
+    production: false,
 
-hmr: false
+    hmr: false
 
 };
 ```
@@ -49,27 +49,27 @@ Después de añadir los entornos, debemos de actualizar el archivo *angular.json
 ```js
 "build": {
 
-"configurations": {
+    "configurations": {
 
-...
+    ...
 
-"hmr": {
+        "hmr": {
 
-"fileReplacements": [
+            "fileReplacements": [
 
-{
+            {
 
-"replace": "src/environments/environment.ts",
+            "replace": "src/environments/environment.ts",
 
-"with": "src/environments/environment.hmr.ts"
+            "with": "src/environments/environment.hmr.ts"
 
-}
+            }
 
-]
+            ]
 
-}
+        }
 
-}
+    }
 
 },
 
@@ -79,15 +79,15 @@ Después de añadir los entornos, debemos de actualizar el archivo *angular.json
 
 "configurations": {
 
-...
+    ...
 
-"hmr": {
+    "hmr": {
 
-"hmr": true,
+        "hmr": true,
 
-"browserTarget": "<project-name>:build:hmr"
+        "browserTarget": "<project-name>:build:hmr"
 
-}
+    }
 
 }
 
@@ -100,15 +100,15 @@ Añadimos también los tupos al archivo *`src/tsconfig.app.json`* como **node**.
 ```js
 {
 
-...
+    ...
 
-"compilerOptions": {
+    "compilerOptions": {
 
-...
+    ...
 
-"types": ["node"]
+    "types": ["node"]
 
-},
+    },
 
 }
 ```
@@ -124,9 +124,9 @@ SI queremos añadir un shortcut, podemos hacerlo en el *package.json* con el sig
 ```js
 "scripts": {
 
-...
+    ...
 
-"hmr": "ng serve --configuration hmr"
+    "hmr": "ng serve --configuration hmr"
 
 }
 
@@ -147,25 +147,25 @@ import { createNewHosts } from '@angularclass/hmr';
 
 export const hmrBootstrap = (module: any, bootstrap: () => Promise<NgModuleRef<any>>) => {
 
-let ngModule: NgModuleRef<any>;
+    let ngModule: NgModuleRef<any>;
 
-module.hot.accept();
+    module.hot.accept();
 
-bootstrap().then(mod => ngModule = mod);
+    bootstrap().then(mod => ngModule = mod);
 
-module.hot.dispose(() => {
+    module.hot.dispose(() => {
 
-const appRef: ApplicationRef = ngModule.injector.get(ApplicationRef);
+        const appRef: ApplicationRef = ngModule.injector.get(ApplicationRef);
 
-const elements = appRef.components.map(c => c.location.nativeElement);
+        const elements = appRef.components.map(c => c.location.nativeElement);
 
-const makeVisible = createNewHosts(elements);
+        const makeVisible = createNewHosts(elements);
 
-ngModule.destroy();
+        ngModule.destroy();
 
-makeVisible();
+        makeVisible();
 
-});
+    });
 
 };
 ```
@@ -185,31 +185,31 @@ import { hmrBootstrap } from './hmr';
 
 if (environment.production) {
 
-enableProdMode();
+    enableProdMode();
 
 }
 
 const bootstrap = () => platformBrowserDynamic().bootstrapModule(AppModule);
 
-if (environment.hmr) {
+    if (environment.hmr) {
 
-if (module[ 'hot' ]) {
+        if (module[ 'hot' ]) {
 
-hmrBootstrap(module, bootstrap);
+            hmrBootstrap(module, bootstrap);
 
-} else {
+        } else {
 
-console.error('HMR is not enabled for webpack-dev-server!');
+            console.error('HMR is not enabled for webpack-dev-server!');
 
-console.log('Are you using the --hmr flag for ng serve?');
+            console.log('Are you using the --hmr flag for ng serve?');
 
-}
+        }
 
-} else {
+    } else {
 
-bootstrap().catch(err => console.log(err));
+    bootstrap().catch(err => console.log(err));
 
-}
+    }
 ```
 
 Finalemente, hemos terminado de implementar el HMR en nuestro proyecto de Angular.
