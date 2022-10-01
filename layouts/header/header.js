@@ -12,6 +12,9 @@ import { Logo } from "../../components/Logo";
 const Header = () => {
   return (
     <>
+          <HeaderBar>
+        <span>Sígueme en Instagram y Twitter: @serdev_es</span>
+      </HeaderBar>
       <HeaderWrapper id="layout-header">
         <Link href={"/"}>
           <a className="logo" style={{ display: "flex", alignItems: "center" }}>
