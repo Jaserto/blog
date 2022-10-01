@@ -1,9 +1,22 @@
 import styled, { keyframes } from 'styled-components';
-import { themeGet } from '@styled-system/theme-get';
+
+export const HeaderBar = styled.div`
+background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #ff1361 100% );
+  display:flex;
+  flex-direction:row;
+  width:100%;
+  padding-top:4px;
+  padding-bottom:4px;
+  span{
+    width:100%;
+  }
+  text-align:center;
+  color:white;
+  font-weight:bold;
+`
 
 
 export const HeaderWrapper = styled.header`
-
   display: flex;
   width: 100%;
   justify-content:space-between;
