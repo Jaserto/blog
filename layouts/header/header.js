@@ -12,7 +12,7 @@ import { Logo } from "../../components/Logo";
 const Header = () => {
   return (
     <>
-          <HeaderBar>
+      <HeaderBar>
         <span>Sígueme en Instagram y Twitter: @serdev_es</span>
       </HeaderBar>
       <HeaderWrapper id="layout-header">

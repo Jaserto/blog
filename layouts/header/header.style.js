@@ -9,6 +9,7 @@ background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #ff1361 100
   padding-bottom:4px;
   span{
     width:100%;
+    font-size:13px;
   }
   text-align:center;
   color:white;
