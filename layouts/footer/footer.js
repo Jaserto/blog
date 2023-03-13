@@ -49,7 +49,7 @@ const Footer = () => {
 <p style={{
   fontSize:'13px'
 }}>
-made with ❤️ © javierserna.com 2021
+made with ❤️ © javierserna.com { new Date().getFullYear() }
 </p>
     </FooterWrapper>
   );
