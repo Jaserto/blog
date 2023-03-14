@@ -8,7 +8,7 @@ import NavLink from '../../components/nav-link';
 //import { RightMenu } from './menu/right-menu/right-menu';
 //import { LeftMenu } from './menu/left-menu/left-menu';
 import {FooterWrapper} from './footer.style';
-import  {Logo}  from '../../components/Logo';
+
 
 
 const Footer = () => {
@@ -33,7 +33,7 @@ const Footer = () => {
             className="menu-item"
             style={{ margin:'10px',display: 'flex', alignItems: 'center'}}
           >
-            <span>proyectos</span>
+            <span>projects</span>
           </a>
         </Link>
       <Link href={'/about'}>
