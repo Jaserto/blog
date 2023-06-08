@@ -14,10 +14,10 @@ export const LayoutWrapper = styled.div`
     @media (max-width: 830px) {
       width: 100%;
       margin:0;
-      padding: 0 30px;
+     /*  padding: 0 30px; */
     }
     @media screen and (max-width: 400px) {
-      padding: 15px;
+    /*   padding: 15px; */
       height: 100%;
     }
    

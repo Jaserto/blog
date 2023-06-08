@@ -62,7 +62,7 @@ overflow:hidden;
     margin: 0 7px;
   }
   .tag1{
-      background-color:#900C3F;
+    background: linear-gradient(207.29deg, #030773 12.44%, #5258fb 86.31%);
       color:white;
       border-radius:5px;
       padding:2px 7px;
@@ -94,7 +94,7 @@ overflow:hidden;
   }
   
   @media (max-width: 830px) {
-    padding: 0 0px;  
+    padding: 0 15px;  
 article{
   width: 100%;
   margin:0;

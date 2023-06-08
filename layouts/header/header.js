@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <>
       <HeaderBar>
-        <span>Sígueme en Instagram y Twitter: @serdev_es</span>
+        Sígueme en Instagram y Twitter: @serdev_es
       </HeaderBar>
       <HeaderWrapper id="layout-header">
         <Link href={"/"}>

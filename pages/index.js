@@ -9,6 +9,7 @@ import { getAllFilesMetadata } from "../lib/mdx";
 const StyledDiv = styled.div`
   width: 100%;
   max-width: 800px;
+  padding: 0 15px;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -53,12 +54,13 @@ const StyledDiv = styled.div`
   .tag1 {
     /*    background-color:#900C3F; */
     color: white;
-    background-image: linear-gradient(
+/*     background-image: linear-gradient(
       -225deg,
       #231557 0%,
       #44107a 29%,
       #ff1361 100%
-    );
+    ); */
+    background: linear-gradient(207.29deg, #030773 12.44%, #5258fb 86.31%);
     border-radius: 5px;
     padding: 2px 7px;
     font-size: 12px;

@@ -1,25 +1,24 @@
 import styled, { keyframes } from 'styled-components';
 
 export const HeaderBar = styled.div`
-background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #ff1361 100% );
-  display:flex;
+  /* background-image: linear-gradient( -225deg, #231557 0%, #44107a 29%, #ff1361 100% ); */
+  background: linear-gradient(207.29deg, #030773 12.44%, #5258fb 86.31%);
+  display:inline-block;
   flex-direction:row;
-  width:100%;
-  padding-top:4px;
   padding-bottom:4px;
-  span{
-    width:100%;
-    font-size:13px;
-  }
-  text-align:center;
-  color:white;
+  width:100%;
+  font-size:13px;
+  text-align: center;
+  color: white;
+  padding: 9px;
+  margin-bottom:10px;
   font-weight:bold;
 `
 
 
 export const HeaderWrapper = styled.header`
   display: flex;
-  width: 100%;
+  width: 100vw
   justify-content:space-between;
   display: flex;
   flex-direction:row;
